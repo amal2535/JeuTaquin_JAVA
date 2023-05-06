@@ -86,14 +86,14 @@ public class JeuTaquin extends JFrame {
                 .addComponent(jRadioButton2))
         );
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_search_30px_1.png"))); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 2, 14));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_search_30px_1.png"))); 
         jButton2.setText("Search");
         
 
         
          // Initial board configuration
-        int[][] initialBoard =generateNewBoard();
+        b.generateNewBoard();
         
         jButton2.addActionListener(new ActionListener(){
 
@@ -102,11 +102,11 @@ public class JeuTaquin extends JFrame {
 
                 if (jRadioButton1.isSelected())
                 	
-                {List<String> solution = solveTaquin(initialBoard);
+                {List<String> solution = solveTaquin(b.board);
 
                     if (solution != null) {
                         jTextField1.setText(solution.size()+"");
-                        printSteps(solution, initialBoard);
+                        printSteps(solution, b.board);
                     } else {
                         jTextArea1.append("No solution found.");
                     }
@@ -115,11 +115,11 @@ public class JeuTaquin extends JFrame {
                 }
                 else if(jRadioButton2.isSelected())
                 {
-                    List<String> solution = solveTaquinDFS(initialBoard);
+                    List<String> solution = solveTaquinDFS(b.board);
 
                     if (solution != null) {
                         jTextField1.setText(solution.size() + "");
-                        printSteps(solution, initialBoard);
+                        printSteps(solution, b.board);
                     } else {
                         jTextArea1.setText("No solution found.");
                     }
@@ -136,8 +136,29 @@ public class JeuTaquin extends JFrame {
 
 
         jButton3.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_replay_30px_1.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_replay_30px_1.png"))); 
         jButton3.setText("Replay");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               int [][] previousTable= b.board;
+               if (previousTable != null) {
+                
+                jButton4.setText(previousTable[0][0] + "");
+                    jButton5.setText(previousTable[0][1] + "");
+                    jButton10.setText(previousTable[0][2] + "");
+                    jButton12.setText(previousTable[1][0] + "");
+                    jButton7.setText(previousTable[1][1] + "");
+                    jButton8.setText(previousTable[1][2] + "");
+                    jButton9.setText(previousTable[2][0] + "");
+                    jButton11.setText(previousTable[2][1] + "");
+                    jButton6.setText(previousTable[2][2] + "");
+
+                    jTextArea1.setText("");
+                    jTextField1.setText("");
+
+            }
+        }
+            });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Moves:");
@@ -146,47 +167,47 @@ public class JeuTaquin extends JFrame {
         
         jButton4.setBackground(new Color(219,112,147));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton4.setText(initialBoard[0][0]+"");
+        jButton4.setText(b.board[0][0]+"");
       
         jPanel6.add(jButton4);
 jButton5.setBackground(new Color(219,112,147));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton5.setText(initialBoard[0][1]+"");
+        jButton5.setText(b.board[0][1]+"");
         jPanel6.add(jButton5);
 
         jButton10.setBackground(new Color(219,112,147));
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton10.setText(initialBoard[0][2]+"");
+        jButton10.setText(b.board[0][2]+"");
         jPanel6.add(jButton10);
 
         jButton12.setBackground(new Color(219,112,147));
         jButton12.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton12.setText(initialBoard[1][0]+"");
+        jButton12.setText(b.board[1][0]+"");
         jPanel6.add(jButton12);
 
         jButton7.setBackground(new Color(219,112,147));    
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton7.setText(initialBoard[1][1]+"");
+        jButton7.setText(b.board[1][1]+"");
         jPanel6.add(jButton7);
 
         jButton8.setBackground(new Color(219,112,147)); 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton8.setText(initialBoard[1][2]+"");
+        jButton8.setText(b.board[1][2]+"");
         jPanel6.add(jButton8);
 
         jButton9.setBackground(new Color(219,112,147));     
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton9.setText(initialBoard[2][0]+"");
+        jButton9.setText(b.board[2][0]+"");
         jPanel6.add(jButton9);
 
         jButton11.setBackground(new Color(219,112,147));
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton11.setText(initialBoard[2][1]+"");
+        jButton11.setText(b.board[2][1]+"");
         jPanel6.add(jButton11);
 
         jButton6.setBackground(new Color(219,112,147));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton6.setText( initialBoard[2][2]+"");
+        jButton6.setText( b.board[2][2]+"");
         jPanel6.add(jButton6);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -235,26 +256,25 @@ jButton5.setBackground(new Color(219,112,147));
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 2, 18)); 
         jButton1.setForeground(new java.awt.Color(255, 102, 102));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_new_30px_4.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_new_30px_4.png"))); 
         jButton1.setText("New Game");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 {
                    
-                    int[][] newBoard = generateNewBoard();
-                
+                    b.generateNewBoard();
                     // Update the buttons with the new board state
-                    jButton4.setText(newBoard[0][0] + "");
-                    jButton5.setText(newBoard[0][1] + "");
-                    jButton10.setText(newBoard[0][2] + "");
-                    jButton12.setText(newBoard[1][0] + "");
-                    jButton7.setText(newBoard[1][1] + "");
-                    jButton8.setText(newBoard[1][2] + "");
-                    jButton9.setText(newBoard[2][0] + "");
-                    jButton11.setText(newBoard[2][1] + "");
-                    jButton6.setText(newBoard[2][2] + "");
+                    jButton4.setText(b.board[0][0] + "");
+                    jButton5.setText(b.board[0][1] + "");
+                    jButton10.setText(b.board[0][2] + "");
+                    jButton12.setText(b.board[1][0] + "");
+                    jButton7.setText(b.board[1][1] + "");
+                    jButton8.setText(b.board[1][2] + "");
+                    jButton9.setText(b.board[2][0] + "");
+                    jButton11.setText(b.board[2][1] + "");
+                    jButton6.setText(b.board[2][2] + "");
 
                     jTextArea1.setText("");
                     jTextField1.setText("");
@@ -300,13 +320,33 @@ jButton5.setBackground(new Color(219,112,147));
 
         jMenu1.setText("File");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_add_30px_2.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_add_30px_2.png")));  
         jMenuItem1.setText("New");
         jMenu1.add(jMenuItem1);
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                {  b.generateNewBoard();
+                    // Update the buttons with the new board state
+                    jButton4.setText(b.board[0][0] + "");
+                    jButton5.setText(b.board[0][1] + "");
+                    jButton10.setText(b.board[0][2] + "");
+                    jButton12.setText(b.board[1][0] + "");
+                    jButton7.setText(b.board[1][1] + "");
+                    jButton8.setText(b.board[1][2] + "");
+                    jButton9.setText(b.board[2][0] + "");
+                    jButton11.setText(b.board[2][1] + "");
+                    jButton6.setText(b.board[2][2] + "");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_cancel_30px_3.png"))); // NOI18N
+                    jTextArea1.setText("");
+                    jTextField1.setText("");
+                   
+                }
+            }});
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_cancel_30px_3.png"))); 
         jMenuItem2.setText("Exit");
         jMenu1.add(jMenuItem2);
+        jMenuItem2.addActionListener(e -> System.exit(0));
 
         jMenuBar1.add(jMenu1);
 
@@ -315,9 +355,15 @@ jButton5.setBackground(new Color(219,112,147));
 
         jMenu3.setText("Help");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_help_30px_1.png"))); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons8_help_30px_1.png"))); 
         jMenuItem3.setText("About");
         jMenu3.add(jMenuItem3);
+        jMenuItem3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+                JOptionPane.showMessageDialog(JeuTaquin.this, "This application was created by Amal Maatoug , ING INFO 1, ISIMM ", "About", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
 
         jMenuBar1.add(jMenu3);
 
@@ -616,31 +662,37 @@ private List<String> getPath(Node node) {
     return path;
 }
 
-private int[][] generateNewBoard() {
-    int[][] board = new int[3][3];
-    List<Integer> numbers = new ArrayList<>();
+public class BoardGenerator {
+    private int[][] board;
 
-    // Populate the list with numbers 0 to 8
-    for (int i = 0; i < 9; i++) {
-        numbers.add(i);
+    public BoardGenerator() {
+        this.board = new int[3][3];
     }
 
-    // Shuffle the numbers randomly
-    Collections.shuffle(numbers);
+    public int[][] generateNewBoard() {
+        List<Integer> numbers = new ArrayList<>();
 
-    // Assign the shuffled numbers to the board
-    int index = 0;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            board[i][j] = numbers.get(index);
-            index++;
+        // Populate the list with numbers 0 to 8
+        for (int i = 0; i < 9; i++) {
+            numbers.add(i);
         }
+
+        // Shuffle the numbers randomly
+        Collections.shuffle(numbers);
+
+        // Assign the shuffled numbers to the board
+        int index = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                this.board[i][j] = numbers.get(index);
+                index++;
+            }
+        }
+
+        return this.board;
     }
-
-    
-
-    return board;
 }
+BoardGenerator b = new BoardGenerator();
 
     
 
