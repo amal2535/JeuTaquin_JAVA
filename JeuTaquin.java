@@ -107,6 +107,7 @@ public class JeuTaquin extends JFrame {
                     if (solution != null) {
                         jTextField1.setText(solution.size()+"");
                         printSteps(solution, b.board);
+                        
                     } else {
                         jTextArea1.append("No solution found.");
                     }
@@ -390,10 +391,6 @@ jButton5.setBackground(new Color(219,112,147));
                                         
     }
         
-        
-    
-
-
     
     public static void main(String args[]) {
        
@@ -479,10 +476,7 @@ public List<String> solveTaquinDFS(int[][] initialBoard) {
     return null; // No solution found
 }
 
-
-
-    
-    
+ 
            
 //BFS method 
 class Node {
@@ -500,61 +494,66 @@ class Node {
         this.parent = null;
     }
 }
-private static final int[] ROW_MOVES = {0, 0, -1, 1};
+    private static final int[] ROW_MOVES = {0, 0, -1, 1};
     private static final int[] COL_MOVES = {-1, 1, 0, 0};
     private static final String[] DIRECTIONS = {"LEFT", "RIGHT", "UP", "DOWN"};
-
-   
     private static final int SIZE = 3;
 
-private static void printSteps(List<String> moves, int[][] initialBoard) {
-    int[][] currentBoard = cloneBoard(initialBoard);
-    jTextArea1.append("Configurations du tableau :\n");
-    jTextArea1.append("Étape 0 :\n");
-    printBoard(currentBoard);
-    System.out.println();
 
-    for (int i = 0; i < moves.size(); i++) {
-        String move = moves.get(i);
 
-        int zeroRow = findZeroRow(currentBoard);
-        int zeroCol = findZeroCol(currentBoard);
-        int newRow = zeroRow;
-        int newCol = zeroCol;
-
-        switch (move) {
-            case "UP":
-                newRow--;
-                break;
-            case "DOWN":
-                newRow++;
-                break;
-            case "LEFT":
-                newCol--;
-                break;
-            case "RIGHT":
-                newCol++;
-                break;
-        }
-
-        swap(currentBoard, zeroRow, zeroCol, newRow, newCol);
-
-        jTextArea1.append("");
-        jTextArea1.append("\nÉtape " + (i + 1) + " : "+ move+"\n");
+    private static void printSteps(List<String> moves, int[][] initialBoard) {
+        int[][] currentBoard = cloneBoard(initialBoard);
+        jTextArea1.append("Configurations du tableau :\n");
+        jTextArea1.append("Étape 0 :\n");
         printBoard(currentBoard);
+    
+        for (int i = 0; i < moves.size(); i++) {
+            String move = moves.get(i);
+    
+            int zeroRow = findZeroRow(currentBoard);
+            int zeroCol = findZeroCol(currentBoard);
+            int newRow = zeroRow;
+            int newCol = zeroCol;
+    
+            switch (move) {
+                case "UP":
+                    newRow--;
+                    break;
+                case "DOWN":
+                    newRow++;
+                    break;
+                case "LEFT":
+                    newCol--;
+                    break;
+                case "RIGHT":
+                    newCol++;
+                    break;
+            }
+     
+            swap(currentBoard, zeroRow, zeroCol, newRow, newCol);
+    
+            jTextArea1.append("");
+            jTextArea1.append("\nStep " + (i + 1) + " : "+ move+"\n");
+            printBoard(currentBoard);
+       
+    
+     
+        }
+        jTextArea1.append("Done!");
     }
-}
+    
+    private static void printBoard(int[][] board) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                
+                jTextArea1.append(board[i][j] + " ");
 
-private static void printBoard(int[][] board) {
-    for (int i = 0; i < board.length; i++) {
-        for (int j = 0; j < board[i].length; j++) {
-            jTextArea1.append(board[i][j] + " ");
+            }
+            jTextArea1.append("\n");
         }
         jTextArea1.append("\n");
     }
-    jTextArea1.append("\n");
-}
-
+    
 
 public List<String> solveTaquin(int[][] initialBoard) {
     int[][] goalBoard = {
@@ -586,6 +585,7 @@ public List<String> solveTaquin(int[][] initialBoard) {
 
             if (isValidMove(newRow, newCol)) {
                 int[][] newBoard = cloneBoard(current.board);
+         
                 swap(newBoard, zeroRow, zeroCol, newRow, newCol);
 
                 if (!visited.contains(Arrays.deepToString(newBoard))) {
@@ -605,7 +605,7 @@ public List<String> solveTaquin(int[][] initialBoard) {
         jButton8.setText(goalBoard[1][2]+"");
         jButton9.setText(goalBoard[2][0]+"");
         jButton11.setText(goalBoard[2][1]+"");
-        jButton6.setText(goalBoard[2][2]+"");
+        jButton6.setText(goalBoard[2][2]+""); 
     }
 
     return null; // No solution found
@@ -621,6 +621,7 @@ private static int[][] cloneBoard(int[][] board) {
         for (int j = 0; j < SIZE; j++) {
             clone[i][j] = board[i][j];
         }
+        
     }
     return clone;
 }
@@ -662,6 +663,7 @@ private List<String> getPath(Node node) {
     return path;
 }
 
+
 public class BoardGenerator {
     private int[][] board;
 
@@ -688,8 +690,46 @@ public class BoardGenerator {
                 index++;
             }
         }
+        
+        // Check if the generated board is solvable
+        while (!isSolvable()) {
+            Collections.shuffle(numbers);
+            index = 0;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    this.board[i][j] = numbers.get(index);
+                    index++;
+                }
+            }
+        }
 
         return this.board;
+    }
+
+    private boolean isSolvable() {
+        int inversions = 0;
+        int[] flat = flatten();
+        for (int i = 0; i < flat.length - 1; i++) {
+            if (flat[i] != 0) {
+                for (int j = i + 1; j < flat.length; j++) {
+                    if (flat[j] != 0 && flat[i] > flat[j]) {
+                        inversions++;
+                    }
+                }
+            }
+        }
+        return inversions % 2 == 0;
+    }
+
+    private int[] flatten() {
+        int[] flat = new int[9];
+        int k = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                flat[k++] = this.board[i][j];
+            }
+        }
+        return flat;
     }
 }
 BoardGenerator b = new BoardGenerator();
