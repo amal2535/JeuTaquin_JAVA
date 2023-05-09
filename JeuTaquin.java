@@ -144,15 +144,15 @@ public class JeuTaquin extends JFrame {
                int [][] previousTable= b.board;
                if (previousTable != null) {
                 
-                jButton4.setText(previousTable[0][0] + "");
-                    jButton5.setText(previousTable[0][1] + "");
-                    jButton10.setText(previousTable[0][2] + "");
-                    jButton12.setText(previousTable[1][0] + "");
-                    jButton7.setText(previousTable[1][1] + "");
-                    jButton8.setText(previousTable[1][2] + "");
-                    jButton9.setText(previousTable[2][0] + "");
-                    jButton11.setText(previousTable[2][1] + "");
-                    jButton6.setText(previousTable[2][2] + "");
+                    jButton4.setText(previousTable[0][0] == 0 ? "" : previousTable[0][0] + "");
+                    jButton5.setText(previousTable[0][1] == 0 ? "" : previousTable[0][1] + "");
+                    jButton10.setText(previousTable[0][2] == 0 ? "" : previousTable[0][2] + "");
+                    jButton12.setText(previousTable[1][0] == 0 ? "" : previousTable[1][0] + "");
+                    jButton7.setText(previousTable[1][1] == 0 ? "" : previousTable[1][1] + "");
+                    jButton8.setText(previousTable[1][2] == 0 ? "" : previousTable[1][2] + "");
+                    jButton9.setText(previousTable[2][0] == 0 ? "" : previousTable[2][0] + "");
+                    jButton11.setText(previousTable[2][1] == 0 ? "" : previousTable[2][1] + "");
+                    jButton6.setText(previousTable[2][2] == 0 ? "" : previousTable[2][2] + "");
 
                     jTextArea1.setText("");
                     jTextField1.setText("");
@@ -267,15 +267,15 @@ jButton5.setBackground(new Color(219,112,147));
                    
                     b.generateNewBoard();
                     // Update the buttons with the new board state
-                    jButton4.setText(b.board[0][0] + "");
-                    jButton5.setText(b.board[0][1] + "");
-                    jButton10.setText(b.board[0][2] + "");
-                    jButton12.setText(b.board[1][0] + "");
-                    jButton7.setText(b.board[1][1] + "");
-                    jButton8.setText(b.board[1][2] + "");
-                    jButton9.setText(b.board[2][0] + "");
-                    jButton11.setText(b.board[2][1] + "");
-                    jButton6.setText(b.board[2][2] + "");
+                    jButton4.setText(b.board[0][0] == 0 ? "" : b.board[0][0] + "");
+                    jButton5.setText(b.board[0][1] == 0 ? "" : b.board[0][1] + "");
+                    jButton10.setText(b.board[0][2] == 0 ? "" : b.board[0][2] + "");
+                    jButton12.setText(b.board[1][0] == 0 ? "" : b.board[1][0] + "");
+                    jButton7.setText(b.board[1][1] == 0 ? "" : b.board[1][1] + "");
+                    jButton8.setText(b.board[1][2] == 0 ? "" : b.board[1][2] + "");
+                    jButton9.setText(b.board[2][0] == 0 ? "" : b.board[2][0] + "");
+                    jButton11.setText(b.board[2][1] == 0 ? "" : b.board[2][1] + "");
+                    jButton6.setText(b.board[2][2] == 0 ? "" : b.board[2][2] + "");
 
                     jTextArea1.setText("");
                     jTextField1.setText("");
@@ -328,15 +328,15 @@ jButton5.setBackground(new Color(219,112,147));
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 {  b.generateNewBoard();
                     // Update the buttons with the new board state
-                    jButton4.setText(b.board[0][0] + "");
-                    jButton5.setText(b.board[0][1] + "");
-                    jButton10.setText(b.board[0][2] + "");
-                    jButton12.setText(b.board[1][0] + "");
-                    jButton7.setText(b.board[1][1] + "");
-                    jButton8.setText(b.board[1][2] + "");
-                    jButton9.setText(b.board[2][0] + "");
-                    jButton11.setText(b.board[2][1] + "");
-                    jButton6.setText(b.board[2][2] + "");
+                    jButton4.setText(b.board[0][0] == 0 ? "" : b.board[0][0] + "");
+                    jButton5.setText(b.board[0][1] == 0 ? "" : b.board[0][1] + "");
+                    jButton10.setText(b.board[0][2] == 0 ? "" : b.board[0][2] + "");
+                    jButton12.setText(b.board[1][0] == 0 ? "" : b.board[1][0] + "");
+                    jButton7.setText(b.board[1][1] == 0 ? "" : b.board[1][1] + "");
+                    jButton8.setText(b.board[1][2] == 0 ? "" : b.board[1][2] + "");
+                    jButton9.setText(b.board[2][0] == 0 ? "" : b.board[2][0] + "");
+                    jButton11.setText(b.board[2][1] == 0 ? "" : b.board[2][1] + "");
+                    jButton6.setText(b.board[2][2] == 0 ? "" : b.board[2][2] + "");
 
                     jTextArea1.setText("");
                     jTextField1.setText("");
@@ -462,15 +462,15 @@ public List<String> solveTaquinDFS(int[][] initialBoard) {
                 }
             }
         }
-        jButton4.setText(goalBoard[0][0]+"");
-        jButton5.setText(goalBoard[0][1]+"");
-        jButton10.setText(goalBoard[0][2]+"");
-        jButton12.setText(goalBoard[1][0]+"");
-        jButton7.setText(goalBoard[1][1]+"");
-        jButton8.setText(goalBoard[1][2]+"");
-        jButton9.setText(goalBoard[2][0]+"");
-        jButton11.setText(goalBoard[2][1]+"");
-        jButton6.setText(goalBoard[2][2]+"");
+                    jButton4.setText(goalBoard[0][0] == 0 ? "" : goalBoard[0][0] + "");
+                    jButton5.setText(goalBoard[0][1] == 0 ? "" : goalBoard[0][1] + "");
+                    jButton10.setText(goalBoard[0][2] == 0 ? "" : goalBoard[0][2] + "");
+                    jButton12.setText(goalBoard[1][0] == 0 ? "" : goalBoard[1][0] + "");
+                    jButton7.setText(goalBoard[1][1] == 0 ? "" : goalBoard[1][1] + "");
+                    jButton8.setText(goalBoard[1][2] == 0 ? "" : goalBoard[1][2] + "");
+                    jButton9.setText(goalBoard[2][0] == 0 ? "" : goalBoard[2][0] + "");
+                    jButton11.setText(goalBoard[2][1] == 0 ? "" : goalBoard[2][1] + "");
+                    jButton6.setText(goalBoard[2][2] == 0 ? "" : goalBoard[2][2] + "");
     }
 
     return null; // No solution found
@@ -507,52 +507,71 @@ class Node {
         jTextArea1.append("Étape 0 :\n");
         printBoard(currentBoard);
     
-        for (int i = 0; i < moves.size(); i++) {
-            String move = moves.get(i);
+        new Thread(() -> {
+            for (int i = 0; i < moves.size(); i++) {
+                final int index = i;
+                String move = moves.get(i);
     
-            int zeroRow = findZeroRow(currentBoard);
-            int zeroCol = findZeroCol(currentBoard);
-            int newRow = zeroRow;
-            int newCol = zeroCol;
+                int zeroRow = findZeroRow(currentBoard);
+                int zeroCol = findZeroCol(currentBoard);
+                int newRow = zeroRow;
+                int newCol = zeroCol;
     
-            switch (move) {
-                case "UP":
-                    newRow--;
-                    break;
-                case "DOWN":
-                    newRow++;
-                    break;
-                case "LEFT":
-                    newCol--;
-                    break;
-                case "RIGHT":
-                    newCol++;
-                    break;
+                switch (move) {
+                    case "UP":
+                        newRow--;
+                        break;
+                    case "DOWN":
+                        newRow++;
+                        break;
+                    case "LEFT":
+                        newCol--;
+                        break;
+                    case "RIGHT":
+                        newCol++;
+                        break;
+                }
+    
+                swap(currentBoard, zeroRow, zeroCol, newRow, newCol);
+    
+                try {
+                    // Wait for 500 milliseconds before updating GUI and printing board
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+    
+                // Update GUI on the Event Dispatch Thread
+                SwingUtilities.invokeLater(() -> {
+                    jButton4.setText(currentBoard[0][0] == 0 ? "" : currentBoard[0][0] + "");
+                    jButton5.setText(currentBoard[0][1] == 0 ? "" : currentBoard[0][1] + "");
+                    jButton10.setText(currentBoard[0][2] == 0 ? "" : currentBoard[0][2] + "");
+                    jButton12.setText(currentBoard[1][0] == 0 ? "" : currentBoard[1][0] + "");
+                    jButton7.setText(currentBoard[1][1] == 0 ? "" : currentBoard[1][1] + "");
+                    jButton8.setText(currentBoard[1][2] == 0 ? "" : currentBoard[1][2] + "");
+                    jButton9.setText(currentBoard[2][0] == 0 ? "" : currentBoard[2][0] + "");
+                    jButton11.setText(currentBoard[2][1] == 0 ? "" : currentBoard[2][1] + "");
+                    jButton6.setText(currentBoard[2][2] == 0 ? "" : currentBoard[2][2] + "");
+                    jTextArea1.append("");
+                    jTextArea1.append("\nStep " + (index + 1) + " : " + move + "\n");
+                    printBoard(currentBoard);
+                });
             }
-     
-            swap(currentBoard, zeroRow, zeroCol, newRow, newCol);
     
-            jTextArea1.append("");
-            jTextArea1.append("\nStep " + (i + 1) + " : "+ move+"\n");
-            printBoard(currentBoard);
-       
-    
-     
-        }
-        jTextArea1.append("Done!");
+            SwingUtilities.invokeLater(() -> jTextArea1.append("Done!"));
+        }).start();
     }
     
     private static void printBoard(int[][] board) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                
                 jTextArea1.append(board[i][j] + " ");
-
             }
             jTextArea1.append("\n");
         }
         jTextArea1.append("\n");
     }
+    
     
 
 public List<String> solveTaquin(int[][] initialBoard) {
@@ -597,15 +616,15 @@ public List<String> solveTaquin(int[][] initialBoard) {
                 }
             }
         }
-        jButton4.setText(goalBoard[0][0]+"");
-        jButton5.setText(goalBoard[0][1]+"");
-        jButton10.setText(goalBoard[0][2]+"");
-        jButton12.setText(goalBoard[1][0]+"");
-        jButton7.setText(goalBoard[1][1]+"");
-        jButton8.setText(goalBoard[1][2]+"");
-        jButton9.setText(goalBoard[2][0]+"");
-        jButton11.setText(goalBoard[2][1]+"");
-        jButton6.setText(goalBoard[2][2]+""); 
+        jButton4.setText(goalBoard[0][0] == 0 ? "" : goalBoard[0][0] + "");
+        jButton5.setText(goalBoard[0][1] == 0 ? "" : goalBoard[0][1] + "");
+        jButton10.setText(goalBoard[0][2] == 0 ? "" : goalBoard[0][2] + "");
+        jButton12.setText(goalBoard[1][0] == 0 ? "" : goalBoard[1][0] + "");
+        jButton7.setText(goalBoard[1][1] == 0 ? "" : goalBoard[1][1] + "");
+        jButton8.setText(goalBoard[1][2] == 0 ? "" : goalBoard[1][2] + "");
+        jButton9.setText(goalBoard[2][0] == 0 ? "" : goalBoard[2][0] + "");
+        jButton11.setText(goalBoard[2][1] == 0 ? "" : goalBoard[2][1] + "");
+        jButton6.setText(goalBoard[2][2] == 0 ? "" : goalBoard[2][2] + "");
     }
 
     return null; // No solution found
